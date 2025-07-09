@@ -47,44 +47,44 @@ This end-to-end project involved a multi-stage development process:
 
 **Visualizing the training loss of 21 Categories Model:**
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_3/loss_21_categories_model.png" alt="Fine Tuned 21 Categories Model Loss Graph" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_3/loss_21_categories_model.png" alt="Fine Tuned 21 Categories Model Loss Graph" width="700"/>
 </p>
 
 **Visualizing the training loss of fine-tuned 3 Categories Model:**
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_3/loss_3_categories_model.png" alt="Fine Tuned Three Categories Model Loss Graph" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_3/loss_3_categories_model.png" alt="Fine Tuned Three Categories Model Loss Graph" width="700"/>
 </p>
 
 **Visualizing the training/validation loss and accuracy graphs of Phase 1-2 Experiment**
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_1-2/vgg_training_validation_loss_accuracy.png" alt="VGG model Loss and Accuracy Graph" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_1-2/vgg_training_validation_loss_accuracy.png" alt="VGG model Loss and Accuracy Graph" width="700"/>
 </p>
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_1-2/resnet_training_validation_loss_accuracy.png" alt="ResNet model Loss and Accuracy Graph" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_1-2/resnet_training_validation_loss_accuracy.png" alt="ResNet model Loss and Accuracy Graph" width="700"/>
 </p>
 
 **Visualizing the samples of misclassified images in Phase 1-2 Experiment**
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_1-2/vgg_misclassification_samples.png" alt="VGG model Misclassification Samples" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_1-2/vgg_misclassification_samples.png" alt="VGG model Misclassification Samples" width="700"/>
 </p>
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_1-2/resnet_misclassification_samples.png" alt="ResNet model Misclassification Samples" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_1-2/resnet_misclassification_samples.png" alt="ResNet model Misclassification Samples" width="700"/>
 </p>
 
 **Visualizing the learning curves graphs of Phase 2 Experiment**
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_2/learning_graphs_top_five_models.png" alt="Fine-Tuned Models earning Curves Graph" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_2/learning_graphs_top_five_models.png" alt="Fine-Tuned Models earning Curves Graph" width="700"/>
 </p>
 
 **Visualizing the samples of misclassified images in Phase 2 Experiment**
 
 <p align="center">
-  <img src="spill_identification_and_robot_detection/phase_2/final_best_model_misclassification_samples.png" alt="Final Best Model Misclassification Samples" width="700"/>
+  <img src="spill_identification_and_robot_reaction/phase_2/final_best_model_misclassification_samples.png" alt="Final Best Model Misclassification Samples" width="700"/>
 </p>
 
 ---
