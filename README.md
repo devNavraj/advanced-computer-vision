@@ -26,21 +26,24 @@ This project's goal was to bridge the gap between a standalone computer vision m
 ### Methodology & System Architecture
 This end-to-end project involved a multi-stage development process:
 
-1.  **Custom Dataset Creation:** A unique dataset of 21 domestic spill categories (e.g., Coke, Oil, Gatorade variants, Milk) was manually collected and annotated. This was done under varied lighting and on different surfaces to ensure the model could handle real-world visual diversity.
+1. **Custom Dataset Creation:** A unique dataset of 21 domestic spill categories (e.g., Coke, Oil, Gatorade variants, Milk) was manually collected and annotated. This was done under varied lighting and on different surfaces to ensure the model could handle real-world visual diversity.
 
-2.  **Model Development & Fine-Tuning (PyTorch):**
-    *   A pre-trained **ResNet50** model was initially fine-tuned on the 21-class dataset.
-    *   Advanced training techniques were employed, including **layer-wise learning rates** to preserve valuable low-level features while adapting high-level ones.
-    *   A specialized 3-class model was created via **transfer learning** from the initial 21-class model, using a smaller dataset captured directly from the robot's camera to optimize performance for the specific deployment environment.
+2. **Model Development & Fine-Tuning (PyTorch):**
+    * In the initial phase of experiments, a rigorous comparison was conducted between **VGG16** and **ResNet50**, testing multiple fine-tuning strategies (e.g., full fine-tuning vs. freezing the backbone) and learning rate schedulers (`StepLR`, `CosineAnnealingLR`, `ReduceLROnPlateau`).
+    * Then, better performing model pre-trained **ResNet50** model was  fine-tuned on the 21-class dataset.
+    * Advanced training techniques were employed, including **layer-wise learning rates** to preserve valuable low-level features while adapting high-level ones
+    * A specialized 3-class model was created via **transfer learning** and **fine-tuning** approaches from the initial 21-class model, using a smaller dataset captured directly from the robot's camera to optimize performance for the specific deployment environment.
 
 3.  **Robotics Integration (ROS2):**
-    *   A Python-based ROS2 subscriber node (`capture_sub.py`) was developed to process the real-time image stream from the robot's camera (`/depth_cam/rgb/image_raw`).
-    *   A core application node (`react.py`) was engineered to:
-        *   Perform real-time inference using the loaded 3-class PyTorch model.
-        *   Map classification outputs to specific behaviors (e.g., "Coke" -> move forward; "Gatorade Blue" -> move forward + turn left; "Gatored Red" -> move backward; "Uncertain" -> stop).
-        *   Publish `geometry_msgs/Twist` messages to the `/cmd_vel` topic to control the robot's motors.
+    * A Python-based ROS2 subscriber node (`capture_sub.py`) was developed to process the real-time image stream from the robot's camera (`/depth_cam/rgb/image_raw`).
+    * A core application node (`react.py`) was engineered to:
+      *   Perform real-time inference using the loaded 3-class PyTorch model.
+      *   Map classification outputs to specific behaviors (e.g., "Coke" -> move forward; "Gatorade Blue" -> move forward + turn left; "Gatored Red" -> move backward; "Uncertain" -> stop).
+      *   Publish `geometry_msgs/Twist` messages to the `/cmd_vel` topic to control the robot's motors.
 
 ### Key Outcomes & Demonstration
+- The **fine-tuned ResNet50 model achieved a test accuracy of 84.85%**, significantly outperforming VGG16 and proving its architectural superiority for this task.
+- The analysis concluded that a full fine-tuning approach combined with advanced data augmentation and an adaptive learning rate scheduler (`ReduceLROnPlateau`) was the most effective strategy.
 - A fully functional, deployed system where a physical robot autonomously reacted to its environment based on visual input.
 - The specialized 3-class model achieved **100% test accuracy** under lab conditions, validating the two-stage fine-tuning approach.
 - This project demonstrates a complete "code-to-physical-action" pipeline, showcasing skills in applied AI, robotics, and system integration.
@@ -95,15 +98,16 @@ This end-to-end project involved a multi-stage development process:
 This project addressed the challenge of **Fine-Grained Visual Classification (FGVC)**, which requires distinguishing between highly similar sub-categories (e.g., different models of the same aircraft family). The goal was to systematically evaluate various deep learning techniques to find the optimal approach for the FGVC-Aircraft dataset (102 classes).
 
 ### Methodology & Techniques
-- **Systematic Model Evaluation:** A rigorous comparison was conducted between **VGG16** and **ResNet50**, testing multiple fine-tuning strategies (e.g., full fine-tuning vs. freezing the backbone) and learning rate schedulers (`StepLR`, `CosineAnnealingLR`, `ReduceLROnPlateau`).
+- **Systematic Model Evaluation:** A systematic comparison was conducted between **self-designed custom CNN** and **pre-trained ResNet50** models, along with transfer learning, fine-tuning strategies, applying different learning rate schedulers, and advanced data augmentation..
 - **Data Augmentation:** The impact of strong data augmentation techniques, including `RandomResizedCrop`, `ColorJitter`, and `RandomErasing`, was analyzed and shown to be critical for model generalization.
 - **Advanced CV Exploration:**
     - **Generative Adversarial Networks (GANs):** A **DCGAN** was implemented to generate synthetic aircraft images, exploring its potential for augmenting fine-grained datasets.
     - **Model Interpretability:** **DeepDream** was used to visualize the features learned by different convolutional layers of the ResNet-50 model, providing insight into what the model "sees" at different levels of abstraction.
 
 ### Key Outcomes
-- The **fine-tuned ResNet50 model achieved a test accuracy of 84.85%**, significantly outperforming VGG16 and proving its architectural superiority for this task.
-- The analysis concluded that a full fine-tuning approach combined with advanced data augmentation and an adaptive learning rate scheduler (`ReduceLROnPlateau`) was the most effective strategy.
+- The **fine-tuned ResNet50 model achieved a validation accuracy of approximately 66%**, significantly outperforming self-designed custom CNN model and proving its architectural superiority for this task.
+- The analysis concluded that a well-crafted fine-tuning approach combined with advanced data augmentation and an appropriate learning rate scheduler was the most effective strategy.
+- The self-designed CNN faces capacity vs. overfitting trade-offs and typically underperforms when compared to transfer learning and fine-tuning approach using ResNet50 on this fine-grained image classification task.
 - This project demonstrates a mature, scientific approach to model selection, training, and analysis.
 
 **Example of DeepDream visualization on an aircraft image:**
